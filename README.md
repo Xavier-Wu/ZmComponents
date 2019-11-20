@@ -13,7 +13,7 @@ npm install zmax-company-components --save
 Using a script tag for global use:
 
 ```html
-<script type="text/javascript" src="./ZmComponents/dist/ZmComponents.js"></script>
+<script type="text/javascript" src="./ZmComponents/dist/ZMaxCompanyComponents.js"></script>
 ```
 
 
@@ -21,4 +21,4 @@ Using a script tag for global use:
 
 ```
 import Vue from 'vue'
-import ZmComponents from 'zmax-company-components'
+import ZMaxCompanyComponents from 'zmax-company-components'
