@@ -17,8 +17,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
-    filename: 'ZmComponents.js',
-    library: 'ZmComponents',
+    filename: 'ZMaxCompanyComponents.js',
+    library: 'ZMaxCompanyComponents',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

@@ -1,6 +1,6 @@
 {
   "name": "zmax-company-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ZMax-company-components",
   "keywords": [
     "zm-components"
@@ -8,7 +8,7 @@
   "author": "xavier-wu <1280183098@qq.com>",
   "license": "MIT",
   "private": false,
-  "main": "dist/ZmComponents.js",
+  "main": "dist/ZMaxCompanyComponents.js",
   "directories": {},
   "scripts": {
     "build": "node build/build.js",
