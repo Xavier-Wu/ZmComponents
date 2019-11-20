@@ -20,6 +20,7 @@
 <script>
 import mapTool from './tool'
 export default {
+  name: 'MapInput',
   components: {},
   props: {
     value: {

@@ -144,7 +144,7 @@ const SELECTION_MODEL = {
   RADIO: 'radio'
 }
 export default {
-  name: 'ZmTabel',
+  name: 'ZmTable',
   components: {
     RenderDom: {
       name: 'renderTable',
