@@ -105,8 +105,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
 	install,
 	AppBlock,
-  MessageBox,
-  Notify,
   PageTable,
   PicUpload,
   RemoteSelect,
