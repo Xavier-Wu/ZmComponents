@@ -46,8 +46,6 @@ import TimeRange from './components/TimeRange/index.js'
 
 const components = [
 	AppBlock,
-  MessageBox,
-  Notify,
   PageTable,
   PicUpload,
   RemoteSelect,
