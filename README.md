@@ -4,16 +4,16 @@
 
 > Please install Webpack first!
 
-### install ZmComponents
+### install zmax-company-components
 
 Using npm:
 ```
-npm install ZmComponents --save
+npm install zmax-company-components --save
 ```
 Using a script tag for global use:
 
 ```html
-<script type="text/javascript" src="./ZmComponents/dist/static/js/ZmComponents.js"></script>
+<script type="text/javascript" src="./ZmComponents/dist/ZmComponents.js"></script>
 ```
 
 
@@ -21,4 +21,4 @@ Using a script tag for global use:
 
 ```
 import Vue from 'vue'
-import ZmComponents from 'ZmComponents'
+import ZmComponents from 'zmax-company-components'
