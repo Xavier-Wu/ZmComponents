@@ -1,0 +1,9 @@
+node_modules
+resource
+src.rar
+.vscode/**/*.*
+.vscode
+*的副本
+.vscode/settings.json
+npm-debug.log
+.idea
