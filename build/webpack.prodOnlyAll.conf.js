@@ -2,21 +2,24 @@ var path = require('path')
 var webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
-const config = require("../config")
+const config = require('../config')
 
 const extractSass = new ExtractTextPlugin({
   filename: '[name].css',
   disable: !isProd
 })
-const components = require("../components.json")
 
 module.exports = {
-  entry: components,
+  entry: {
+    commons: ['./src/packages/src/commons/index.js'],
+    components: ['./src/packages/src/components/index.js'],
+    ZMaxCompanyComponents: ['./src/packages/src/index.js']
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    library: 'ZmaxCompanyComponents',
     chunkFilename: '[id].js',
+    library: 'ZMaxCompanyComponents',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

@@ -11,7 +11,7 @@ const webpack = require('webpack')
 const config = require('../config')
 let webpackConfig = require('./webpack.prod.conf')
 if (process.argv[2] == 'all') {
-  webpackConfig = require('./webpack.prodAll.conf')
+  webpackConfig = require('./webpack.prodOnlyAll.conf')
 }
 const spinner = ora('building for production...')
 spinner.start()
