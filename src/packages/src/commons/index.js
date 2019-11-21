@@ -28,8 +28,6 @@ import ZmUpdateLoading from './ZmUpdateLoading/index.js'
 
 const components = [
   AppBlock,
-  MessageBox,
-  Notify,
   PageTable,
   PicUpload,
   RemoteSelect,
