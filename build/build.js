@@ -9,8 +9,10 @@ const path = require('path')
 const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('../config')
-const webpackConfig = require('./webpack.prod.conf')
-
+let webpackConfig = require('./webpack.prod.conf')
+if (process.argv[2] == 'all') {
+  webpackConfig = require('./webpack.prodAll.conf')
+}
 const spinner = ora('building for production...')
 spinner.start()
 
