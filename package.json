@@ -1,6 +1,6 @@
 {
   "name": "zmax-company-components",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "ZMax-company-components",
   "keywords": [
     "zm-components"
@@ -8,7 +8,10 @@
   "author": "xavier-wu <1280183098@qq.com>",
   "license": "MIT",
   "private": false,
-  "main": "dist/ZMaxCompanyComponents.js",
+  "main": "lib/ZMaxCompanyComponents.js",
+  "files": [
+    "lib"
+  ],
   "directories": {},
   "scripts": {
     "build": "node build/build.js",
@@ -17,7 +20,8 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "start": "npm run dev",
     "test": "npm run unit && npm run e2e",
-    "unit": "jest --config test/unit/jest.conf.js --coverage"
+    "unit": "jest --config test/unit/jest.conf.js --coverage",
+    "build_all": "node build/build.js all"
   },
   "repository": {
     "type": "git",

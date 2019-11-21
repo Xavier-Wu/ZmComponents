@@ -2,24 +2,19 @@ var path = require('path')
 var webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
-const config = require("../config")
+const config = require('../config')
 
 const extractSass = new ExtractTextPlugin({
   filename: '[name].css',
   disable: !isProd
 })
-const components = require("../components.json")
-const entry = {}
-Object.keys(components).forEach(item => {
-  entry[item] = components[item]
-})
+
 module.exports = {
-  entry: entry,
-  // entry: {
-  //   commons: ['./src/packages/src/commons/index.js'],
-  //   components: ['./src/packages/src/components/index.js'],
-  //   ZMaxCompanyComponents: ['./src/packages/src/index.js']
-  // },
+  entry: {
+    commons: ['./src/packages/src/commons/index.js'],
+    components: ['./src/packages/src/components/index.js'],
+    ZMaxCompanyComponents: ['./src/packages/src/index.js']
+  },
   output: {
     // path: path.resolve(__dirname, '../dist/lib/'),
     path: config.build.assetsRoot,
