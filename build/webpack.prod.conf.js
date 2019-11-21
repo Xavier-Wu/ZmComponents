@@ -9,15 +9,16 @@ const extractSass = new ExtractTextPlugin({
 })
 
 module.exports = {
-  // entry: {
-  //   commons: ['./src/packages/src/commons/index.js'],
-  //   components: ['./src/packages/src/components/index.js']
-  // },
-  entry: './src/packages/src/index.js',
+  entry: {
+    commons: ['./src/packages/src/commons/index.js'],
+    components: ['./src/packages/src/components/index.js'],
+    ZMaxCompanyComponents: ['./src/packages/src/index.js']
+  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
-    filename: 'ZMaxCompanyComponents.js',
+    // filename: 'ZMaxCompanyComponents.js',
+    filename: '[name].js',
     library: 'ZMaxCompanyComponents',
     libraryTarget: 'umd',
     umdNamedDefine: true
