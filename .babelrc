@@ -15,7 +15,11 @@
       "component",
       [
         {
-          "libraryName": "ZMaxCompanyComponents"
+          "libraryName": "ZMaxCompanyComponents",
+          "styleLibraryName": {
+            "name": "theme",
+            "base": false
+          }
         },
         {
           "libraryName": "element-ui",
