@@ -16,11 +16,9 @@ module.exports = {
     ZMaxCompanyComponents: ['./src/packages/src/index.js']
   },
   output: {
-    // path: path.resolve(__dirname, '../dist/lib/'),
     path: config.build.assetsRoot,
-    // publicPath: '/dist/',
-    // filename: 'ZMaxCompanyComponents.js',
     filename: '[name].js',
+    chunkFilename: '[id].js',
     library: 'ZMaxCompanyComponents',
     libraryTarget: 'umd',
     umdNamedDefine: true

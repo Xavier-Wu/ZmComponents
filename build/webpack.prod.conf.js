@@ -9,24 +9,14 @@ const extractSass = new ExtractTextPlugin({
   disable: !isProd
 })
 const components = require("../components.json")
-const entry = {}
-Object.keys(components).forEach(item => {
-  entry[item] = components[item]
-})
+
 module.exports = {
-  entry: entry,
-  // entry: {
-  //   commons: ['./src/packages/src/commons/index.js'],
-  //   components: ['./src/packages/src/components/index.js'],
-  //   ZMaxCompanyComponents: ['./src/packages/src/index.js']
-  // },
+  entry: components,
   output: {
-    // path: path.resolve(__dirname, '../dist/lib/'),
     path: config.build.assetsRoot,
-    // publicPath: '/dist/',
-    // filename: 'ZMaxCompanyComponents.js',
     filename: '[name].js',
-    library: 'ZMaxCompanyComponents',
+    library: 'ZmaxCompanyComponents',
+    chunkFilename: '[id].js',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
