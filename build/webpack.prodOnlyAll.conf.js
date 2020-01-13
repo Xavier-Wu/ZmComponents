@@ -12,7 +12,7 @@ const extractSass = new ExtractTextPlugin({
 module.exports = {
   entry: {
     commons: ['./src/packages/src/commons/index.js'],
-    components: ['./src/packages/src/components/index.js'],
+    // components: ['./src/packages/src/components/index.js'],
     ZMaxCompanyComponents: ['./src/packages/src/index.js']
   },
   output: {
