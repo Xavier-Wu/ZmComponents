@@ -25,21 +25,5 @@
   "zm-table": "./src/packages/src/commons/ZmTable/index.js",
   "zm-tabs": "./src/packages/src/commons/ZmTabs/index.js",
   "zm-times-picker": "./src/packages/src/commons/ZmTimesPicker/index.js",
-  "zm-update-loading": "./src/packages/src/commons/ZmUpdateLoading/index.js",
-  "date-selector": "./src/packages/src/components/DateSelector/index.js",
-  "gl-input": "./src/packages/src/components/GlInput/index.js",
-  "gt-lt-price": "./src/packages/src/components/GtLtPrice/index.js",
-  "hamburger": "./src/packages/src/components/Hamburger/index.js",
-  "invoice-info": "./src/packages/src/components/InvoiceInfo/index.js",
-  "map-analyse": "./src/packages/src/components/mapAnalyse/index.js",
-  "payment-info": "./src/packages/src/components/PaymentInfo/index.js",
-  "permission-tree": "./src/packages/src/components/PermissionTree/index.js",
-  "query-ext-plane": "./src/packages/src/components/QueryExtPlane/index.js",
-  "select-date-time": "./src/packages/src/components/SelectDateTime/index.js",
-  "select-week-date-time": "./src/packages/src/components/SelectWeekDateTime/index.js",
-  "set-price-table": "./src/packages/src/components/SetPriceTable/index.js",
-  "set-price-table-items": "./src/packages/src/components/SetPriceTableItems/index.js",
-  "set-price-table-items-handle": "./src/packages/src/components/SetPriceTableItemsHandle/index.js",
-  "tag-list": "./src/packages/src/components/TagList/index.js",
-  "time-range": "./src/packages/src/components/TimeRange/index.js"
+  "zm-update-loading": "./src/packages/src/commons/ZmUpdateLoading/index.js"
 }

@@ -5,7 +5,7 @@
   <!-- </div> -->
 </template>
 <script>
-import { getJumpList } from '@/utils/auth'
+import { getJumpList } from '../../utils/auth'
 
 export default {
   name: 'ZmExport',

@@ -27,25 +27,25 @@ import ZmTabs from './commons/ZmTabs/index.js'
 import ZmTimesPicker from './commons/ZmTimesPicker/index.js'
 import ZmUpdateLoading from './commons/ZmUpdateLoading/index.js'
 // components
-import DateSelector from './components/DateSelector/index.js'
-import GlInput from './components/GlInput/index.js'
-import GtLtPrice from './components/GtLtPrice/index.js'
-import Hamburger from './components/Hamburger/index.js'
-import InvoiceInfo from './components/InvoiceInfo/index.js'
-import mapAnalyse from './components/mapAnalyse/index.js'
-import PaymentInfo from './components/PaymentInfo/index.js'
-import PermissionTree from './components/PermissionTree/index.js'
-import QueryExtPlane from './components/QueryExtPlane/index.js'
-import SelectDateTime from './components/SelectDateTime/index.js'
-import SelectWeekDateTime from './components/SelectWeekDateTime/index.js'
-import SetPriceTable from './components/SetPriceTable/index.js'
-import SetPriceTableItems from './components/SetPriceTableItems/index.js'
-import SetPriceTableItemsHandle from './components/SetPriceTableItemsHandle/index.js'
-import TagList from './components/TagList/index.js'
-import TimeRange from './components/TimeRange/index.js'
+// import DateSelector from './components/DateSelector/index.js'
+// import GlInput from './components/GlInput/index.js'
+// import GtLtPrice from './components/GtLtPrice/index.js'
+// import Hamburger from './components/Hamburger/index.js'
+// import InvoiceInfo from './components/InvoiceInfo/index.js'
+// import mapAnalyse from './components/mapAnalyse/index.js'
+// import PaymentInfo from './components/PaymentInfo/index.js'
+// import PermissionTree from './components/PermissionTree/index.js'
+// import QueryExtPlane from './components/QueryExtPlane/index.js'
+// import SelectDateTime from './components/SelectDateTime/index.js'
+// import SelectWeekDateTime from './components/SelectWeekDateTime/index.js'
+// import SetPriceTable from './components/SetPriceTable/index.js'
+// import SetPriceTableItems from './components/SetPriceTableItems/index.js'
+// import SetPriceTableItemsHandle from './components/SetPriceTableItemsHandle/index.js'
+// import TagList from './components/TagList/index.js'
+// import TimeRange from './components/TimeRange/index.js'
 
 const components = [
-	AppBlock,
+  AppBlock,
   PageTable,
   PicUpload,
   RemoteSelect,
@@ -71,23 +71,23 @@ const components = [
   ZmTable,
   ZmTabs,
   ZmTimesPicker,
-  ZmUpdateLoading,
-  DateSelector,
-  GlInput,
-  GtLtPrice,
-  Hamburger,
-  InvoiceInfo,
-  mapAnalyse,
-  PaymentInfo,
-  PermissionTree,
-  QueryExtPlane,
-  SelectDateTime,
-  SelectWeekDateTime,
-  SetPriceTable,
-  SetPriceTableItems,
-  SetPriceTableItemsHandle,
-  TagList,
-  TimeRange
+  ZmUpdateLoading
+  // DateSelector,
+  // GlInput,
+  // GtLtPrice,
+  // Hamburger,
+  // InvoiceInfo,
+  // mapAnalyse,
+  // PaymentInfo,
+  // PermissionTree,
+  // QueryExtPlane,
+  // SelectDateTime,
+  // SelectWeekDateTime,
+  // SetPriceTable,
+  // SetPriceTableItems,
+  // SetPriceTableItemsHandle,
+  // TagList,
+  // TimeRange
 ]
 const install = function(vue) {
   /* istanbul ignore if */
@@ -103,8 +103,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-	install,
-	AppBlock,
+  install,
+  AppBlock,
   PageTable,
   PicUpload,
   RemoteSelect,
@@ -130,21 +130,21 @@ export default {
   ZmTable,
   ZmTabs,
   ZmTimesPicker,
-  ZmUpdateLoading,
-  DateSelector,
-  GlInput,
-  GtLtPrice,
-  Hamburger,
-  InvoiceInfo,
-  mapAnalyse,
-  PaymentInfo,
-  PermissionTree,
-  QueryExtPlane,
-  SelectDateTime,
-  SelectWeekDateTime,
-  SetPriceTable,
-  SetPriceTableItems,
-  SetPriceTableItemsHandle,
-  TagList,
-  TimeRange
+  ZmUpdateLoading
+  // DateSelector,
+  // GlInput,
+  // GtLtPrice,
+  // Hamburger,
+  // InvoiceInfo,
+  // mapAnalyse,
+  // PaymentInfo,
+  // PermissionTree,
+  // QueryExtPlane,
+  // SelectDateTime,
+  // SelectWeekDateTime,
+  // SetPriceTable,
+  // SetPriceTableItems,
+  // SetPriceTableItemsHandle,
+  // TagList,
+  // TimeRange
 }
