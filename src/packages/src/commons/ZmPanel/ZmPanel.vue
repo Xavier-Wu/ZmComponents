@@ -1,72 +1,155 @@
 <template>
-  <transition :name="transitionName">
-    <div class="zm-panel-mask" :style="{zIndex: zIndex}" v-show="visible">
-      <transition name="fade-scale-in">
-        <!-- sidebar.opened针对该项目的侧栏收缩做监听，改变窗口大小 -->
-        <div
-          class="zm-panel"
-          :class="{'has-footer':$slots.footer}"
-          :style="{left:sidebar.opened?'270px':'65px'}"
-          v-if="renderEveryTime"
-        >
-          <div class="zm-panel-header" v-if="showHeader">
-            {{title}}
-            <i class="zm-panel-close el-icon-close" @click="closePanel"></i>
-          </div>
-          <div class="zm-panel-body">
-            <slot />
-          </div>
-          <div class="zm-panel-footer" v-if="$slots.footer">
-            <slot name="footer"></slot>
-          </div>
-        </div>
-      </transition>
+  <el-dialog
+    :visible.sync="computedVisible"
+    :title="title"
+    :top="top"
+    :fullscreen="fullscreen"
+    :modal="modal"
+    :modal-append-to-body="modalAppendToBody"
+    :append-to-body="appendToBody"
+    :lock-scroll="lockScroll"
+    :close-on-click-modal="closeOnClickModal"
+    :close-on-press-escape="closeOnPressEscape"
+    :show-close="showClose"
+    :before-close="onBeforeClose"
+    :center="center"
+    class="zm-panel"
+    :class="{'has-footer':$slots.footer}"
+  >
+    <template v-if="showHeader">
+      <div slot="title" class="el-dialog__title">
+        <slot v-if="$slots.title||title" name="title">{{title}}</slot>
+      </div>
+    </template>
+    <div v-if="showSlot">
+      <slot />
     </div>
-  </transition>
+    <template v-if="showFooter">
+      <span slot="footer" class="dialog-footer cf">
+        <slot v-if="$slots.footer" name="footer" class="fl" />
+        <template v-else>
+          <el-button @click="cancel">{{ cancelText }}</el-button>
+          <el-button type="primary" @click="ok">{{ okText }}</el-button>
+        </template>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-// import PopupManager from 'element-ui/lib/utils/popup/popup-manager'
-import { PopupManager } from 'element-ui/lib/utils/popup'
+import { Dialog, Button } from 'element-ui';
 export default {
-  name: 'ZmPanel',
+  components: {
+    ElDialog: Dialog,
+    ElButton: Button
+  },
   model: {
     prop: 'visible',
     event: 'change'
   },
   props: {
-    transitionName: {
-      type: String,
-      default: 'fade-scale'
-    },
-    title: {
-      type: String,
-      default: '标题'
-    },
     visible: {
       type: Boolean,
       default: false
+    },
+    title: {
+      type: String,
+      default: '系统提示'
+    },
+    size: {
+      type: String,
+      default: 'small',
+      validator(value) {
+        return ['mini', 'small', 'large', 'auto'].includes(value);
+      }
+    },
+    customWidth: {
+      // 自定义宽度
+      type: String,
+      default: ''
+    },
+    top: {
+      type: String,
+      default: '15vh'
+    },
+    fullscreen: {
+      type: Boolean,
+      default: false
+    },
+    modal: {
+      type: Boolean,
+      default: true
+    },
+    modalAppendToBody: {
+      type: Boolean,
+      default: true
     },
     appendToBody: {
       type: Boolean,
       default: true
     },
-    showHeader: {
+    lockScroll: {
       type: Boolean,
       default: true
+    },
+    closeOnClickModal: {
+      type: Boolean,
+      default: false
+    },
+    closeOnPressEscape: {
+      type: Boolean,
+      default: true
+    },
+    showClose: {
+      type: Boolean,
+      default: true
+    },
+    center: {
+      type: Boolean,
+      default: false
+    },
+    beforeClose: {
+      type: Function,
+      required: false
     },
     keepAlive: {
       type: Boolean,
       default: false
+    },
+    showHeader: {
+      type: Boolean,
+      default: true
+    },
+    showFooter: {
+      type: Boolean,
+      default: true
+    },
+    okText: {
+      type: String,
+      default: '确 定'
+    },
+    cancelText: {
+      type: String,
+      default: '取 消'
     }
   },
   data() {
     return {
-      zIndex: 1
-    }
+      showSlot: true,
+      slot: {
+        footer: false
+      }
+    };
   },
   computed: {
+    computedVisible: {
+      get() {
+        return this.visible;
+      },
+      set(value) {
+        this.$emit('change', value);
+      }
+    },
     renderEveryTime() {
       if (this.keepAlive) {
         return true
@@ -74,109 +157,82 @@ export default {
         return this.visible
       }
     },
-    hasFooter() {
-      return this.$slots.footer
-    },
-    ...mapGetters(['sidebar'])
+    width() {
+      const _size = this.size;
+      let _width = '700';
+      if (_size === 'mini') {
+        _width = '400';
+      } else if (_size === 'small') {
+        _width = '700';
+      } else if (_size === 'large') {
+        _width = '1000';
+      } else if (_size === 'auto') {
+        _width = 'auto'
+      }
+      return (this.customWidth || _width) + 'px';
+    }
   },
   watch: {
-    visible(val) {
-      if (val) {
-        this.openPanel()
+    visible(value) {
+      if (this.keepAlive === false) {
+        this.showSlot = value;
       }
     }
   },
   mounted() {
-    if (this.appendToBody) {
-      document.body.appendChild(this.$el)
-    }
-    if (this.visible === true) {
-      this.openPanel()
-    }
-  },
-  destroyed() {
-    if (this.appendToBody && this.$el) {
-      document.body.removeChild(this.$el)
-    }
+    window.authDialog = this
   },
   methods: {
-    openPanel() {
-      if (this.visible === true) {
-        this.zIndex = PopupManager.nextZIndex()
+    onBeforeClose(done) {
+      if (typeof this.beforeClose === 'function') {
+        this.beforeClose(done);
+      } else {
+        this.$emit('change', false);
       }
     },
-    closePanel() {
-      this.$emit('change', false)
+    cancel() {
+      this.computedVisible = false;
+      this.$emit('cancel');
+    },
+    ok() {
+      this.$emit('confirm', () => {
+        this.computedVisible = false;
+      });
     }
   }
-}
+};
 </script>
-
-<style lang="scss" scoped>
-.zm-panel-mask {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  // background: rgba(0,0,0,0.2);
-  .zm-panel {
-    display: flex;
+<style lang="scss">
+.zm-panel {
+  &.el-dialog__wrapper{
     position: absolute;
-    box-sizing: border-box;
-    &.has-footer {
-      padding-bottom: 70px;
-    }
-    top: 115px;
-    right: 20px;
-    left: 270px;
-    bottom: 52px;
+  }
+  background:rgba(238, 238, 238,.8);
+  .el-dialog {
+    display: flex;
     flex-direction: column;
-    background: #fff;
-    border-radius: 6px;
-    // box-shadow: 0 2px 8px 0 #dcdcdc;
-    .zm-panel-header {
-      position: relative;
-      margin: 10px 15px 0;
-      padding: 5px 0;
-      font-size: 20px;
-      line-height: 30px;
-      border-bottom: 1px solid #ddd;
-      .zm-panel-close {
-        position: absolute;
-        right: 15px;
-        top: 10px;
-        font-size: 20px;
-        color: #ccc;
-        cursor: pointer;
-        transition: all 0.3s linear;
-        &:hover {
-          transform: rotate(180deg) scale(1.2);
-          color: #999;
-        }
-        &:active {
-          color: #f56c6c;
-        }
-      }
+    border-radius:5px;
+    &__body {
+      flex:1;
+      padding: 10px 20px;
+      overflow-y:auto;
+      overflow-x:hidden;
+      max-height:inherit !important
     }
-    .zm-panel-body {
-      flex: 1;
-      overflow: auto;
-      padding: 0 15px 15px;
+    &__header{
+      border-bottom:1px solid #eee;
     }
-    .zm-panel-footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border-top: 1px solid #ddd;
-      height: 60px;
-      line-height: 60px;
-      // text-align: center;
-      padding: 0 20px;
+    &__footer{
+      border-top:1px solid #eee;
     }
+    position: absolute;
+    margin: 0 !important;
+    width: auto;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
   }
 }
 </style>
-

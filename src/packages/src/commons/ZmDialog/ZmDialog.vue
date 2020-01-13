@@ -39,7 +39,6 @@
 <script>
 import { Dialog, Button } from 'element-ui'
 export default {
-  name: 'ZmDialog',
   components: {
     ElDialog: Dialog,
     ElButton: Button
@@ -63,6 +62,10 @@ export default {
       validator(value) {
         return ['mini', 'small', 'large'].includes(value)
       }
+    },
+    customWidth: { // 自定义宽度
+      type: String,
+      default: ''
     },
     top: {
       type: String,
@@ -159,7 +162,7 @@ export default {
       } else if (_size === 'large') {
         _width = '1000'
       }
-      return _width + 'px'
+      return (this.customWidth || _width) + 'px'
     }
   },
   watch: {
@@ -168,6 +171,9 @@ export default {
         this.showSlot = value
       }
     }
+  },
+  mounted() {
+    window.authDialog = this
   },
   methods: {
     onBeforeClose(done) {

@@ -5,6 +5,8 @@
   <!-- </div> -->
 </template>
 <script>
+import { getJumpList } from '@/utils/auth'
+
 export default {
   name: 'ZmExport',
   props: {
@@ -22,7 +24,7 @@ export default {
     },
     params: { // 请求参数
       type: Object,
-      default() {
+      default () {
         return {}
       }
     },
@@ -39,14 +41,13 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-    }
+  data () {
+    return {}
   },
-  created() { },
-  mounted() { },
+  created () { },
+  mounted () { },
   methods: {
-    async onExport() {
+    async onExport () {
       const that = this
       await this.beforeExportFn()
       setTimeout(() => {
@@ -71,9 +72,13 @@ export default {
             that.$confirm('导出成功!', {
               confirmButtonText: '前往下载中心'
             }).then(() => {
-              that.$router.push({
-                name: 'task_mgr'
-              })
+              const arr = JSON.parse(getJumpList())
+              const msg = arr.find(i => i.key === 'download')
+              if (window.parent && window.parent.postMessage) {
+                window.parent.postMessage(JSON.stringify({ isIframe: 1, name: 'jump', ...msg }), '*')
+              } else {
+                console.warn('target browser not support postMessage')
+              }
               that.$emit('after-export')
             }).catch((e) => {
               console.log(e)
