@@ -2,6 +2,8 @@ import Cookies from 'js-cookie'
 
 const TokenKey = 'Admin-Token'
 const UserIdKey = 'Admin-User-Id'
+const JumpList = 'Admin-Jump-List'
+
 export function getToken() {
   return Cookies.get(TokenKey)
 }
@@ -24,4 +26,8 @@ export function setUserId(token) {
 
 export function removeUserId() {
   return Cookies.remove(UserIdKey)
+}
+
+export function getJumpList() {
+  return Cookies.get(JumpList)
 }
