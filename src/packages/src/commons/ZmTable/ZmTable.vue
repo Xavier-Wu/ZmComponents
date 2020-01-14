@@ -44,6 +44,7 @@
           :prop="column.prop"
           :label="column.label"
           :sortable="column.sortable"
+          :sort-method="column.sortMethod"
           :align="column.align||'center'"
           :width="column.width"
           :min-width="column.minWidth"

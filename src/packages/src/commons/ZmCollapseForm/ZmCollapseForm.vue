@@ -10,12 +10,12 @@
         <div slot="title" class="flex1">
           <div class="m-collapse-title ">
             <div class="flex1">
-              <span v-show="item.isEdit">
-                <el-input @click.native.stop="preventClick" v-model="item.ruleItemName" class="w150" placeholder="请输入规则名称" />
-                <span class="fs14 primary pointer" @click.stop="handleEditAction(item, index)">取消</span>
-                <span class="fs14 primary pointer" @click.stop="handleEditAction(item, index)">确定</span>
+              <span v-if="item.isEdit">
+                <el-input @click.native.stop="preventClick" v-model="item.ruleItemName" class="w150" placeholder="请输入规则名称" v-on:keyup.enter.native.stop="enterKey" v-on:keyup.space.native.stop="spaceKey" />
+                <span class="fs12 primary pointer mlr10" @click.stop="handleEditAction(item, index)">取消</span>
+                <span class="fs12 primary pointer" @click.stop="handleEditAction(item, index)">确定</span>
               </span>
-              <span v-show="!item.isEdit">
+              <span v-else>
                 {{item.ruleItemName = item.ruleItemName ? item.ruleItemName : title + (index + 1)}}
               </span>
             </div>
@@ -140,6 +140,8 @@ export default {
         }
       }
     },
+    enterKey () {},
+    spaceKey () {},
     preventClick() {},
     handleAdd () {
       this.$emit('click-add', this.rules)

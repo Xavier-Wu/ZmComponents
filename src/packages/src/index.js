@@ -26,6 +26,9 @@ import ZmTable from './commons/ZmTable/index.js'
 import ZmTabs from './commons/ZmTabs/index.js'
 import ZmTimesPicker from './commons/ZmTimesPicker/index.js'
 import ZmUpdateLoading from './commons/ZmUpdateLoading/index.js'
+import ZmIframeDialog from './commons/ZmIframeDialog/index.js'
+import AppContainer from './commons/AppContainer/index.js'
+
 // components
 // import DateSelector from './components/DateSelector/index.js'
 // import GlInput from './components/GlInput/index.js'
@@ -46,6 +49,7 @@ import ZmUpdateLoading from './commons/ZmUpdateLoading/index.js'
 
 const components = [
   AppBlock,
+  AppContainer,
   PageTable,
   PicUpload,
   RemoteSelect,
@@ -64,6 +68,7 @@ const components = [
   ZmExport,
   FormPoster,
   FormRadioSelect,
+  ZmIframeDialog,
   ZmPanel,
   ZmProgress,
   ZmSelectCom,
@@ -105,6 +110,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   AppBlock,
+  AppContainer,
   PageTable,
   PicUpload,
   RemoteSelect,
@@ -123,6 +129,7 @@ export default {
   ZmExport,
   FormPoster,
   FormRadioSelect,
+  ZmIframeDialog,
   ZmPanel,
   ZmProgress,
   ZmSelectCom,
