@@ -1,5 +1,6 @@
 {
   "app-block": "./src/packages/src/commons/AppBlock/index.js",
+  "app-container": "./src/packages/src/commons/AppContainer/index.js",
   "page-table": "./src/packages/src/commons/PageTable/index.js",
   "pic-upload": "./src/packages/src/commons/PicUpload/index.js",
   "remote-select": "./src/packages/src/commons/RemoteSelect/index.js",
@@ -25,5 +26,6 @@
   "zm-table": "./src/packages/src/commons/ZmTable/index.js",
   "zm-tabs": "./src/packages/src/commons/ZmTabs/index.js",
   "zm-times-picker": "./src/packages/src/commons/ZmTimesPicker/index.js",
-  "zm-update-loading": "./src/packages/src/commons/ZmUpdateLoading/index.js"
+  "zm-update-loading": "./src/packages/src/commons/ZmUpdateLoading/index.js",
+  "zm-iframe-dialog": "./src/packages/src/commons/ZmIframeDialog/index.js"
 }
