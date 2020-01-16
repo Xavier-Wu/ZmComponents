@@ -11,10 +11,12 @@
       style="z-index:9998 !important;"
     >
       <div class="main">
+        <slot name="header" />
         <div class="page-main hi ml20 p0 df">
           <div id="iframeBox"></div>
           <!-- <iframe ref="iframe" marginheight="0" marginwidth="0" :src="iframeSrc" width="100%" :height="height" @load="loadIframe" frameborder="0" scrolling="no"></iframe> -->
         </div>
+        <slot />
       </div>
       <div slot="footer" class="tr">
         <slot name="footer" />
@@ -28,6 +30,7 @@
 <script>
 import PanelMixin from './panelMixin'
 export default {
+  name: 'ZmIframeDialog',
   mixins: [PanelMixin],
   props: {
     params: Object,

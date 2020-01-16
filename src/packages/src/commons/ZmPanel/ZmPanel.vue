@@ -23,6 +23,7 @@
 <script>
 import { Dialog, Button } from 'element-ui';
 export default {
+  name: 'ZmPanel',
   components: {
     ElDialog: Dialog,
     ElButton: Button

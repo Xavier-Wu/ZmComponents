@@ -36,6 +36,7 @@
  */
 
 export default {
+  name: 'ZmDetail',
   props: {
     inline: {
       type: Boolean,
