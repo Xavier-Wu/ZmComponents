@@ -39,7 +39,6 @@
 <script>
 import { Dialog, Button } from 'element-ui'
 export default {
-  name: 'ZmDialog',
   components: {
     ElDialog: Dialog,
     ElButton: Button

@@ -13,7 +13,7 @@ npm install zmax-company-components --save
 Using a script tag for global use:
 
 ```html
-<script type="text/javascript" src="./ZmComponents/dist/ZMaxCompanyComponents.js"></script>
+<script type="text/javascript" src="./ZmComponents/lib/ZMaxCompanyComponents.js"></script>
 ```
 
 

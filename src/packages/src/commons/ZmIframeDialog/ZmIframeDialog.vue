@@ -28,7 +28,6 @@
 <script>
 import PanelMixin from './panelMixin'
 export default {
-  name: 'ZmIframeDialog',
   mixins: [PanelMixin],
   props: {
     params: Object,
@@ -75,8 +74,8 @@ export default {
           iframe.setAttribute('display', 'block')
           iframe.scrolling = 'no'
           iframe.addEventListener('load', _vm.loadIframe())
-          iframe.height = this.type === 'router' ? _vm.height : _vm.height + 80
-          iframe.width = this.type === 'router' ? _vm.width : _vm.width - 120
+          iframe.height = this.type === 'router' ? _vm.height : _vm.height - 146
+          iframe.width = this.type === 'router' ? _vm.width : _vm.width - 40
           const box = document.getElementById('iframeBox')
           box.appendChild(iframe)
           _vm.watchMessage()

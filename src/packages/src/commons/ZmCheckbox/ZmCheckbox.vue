@@ -6,10 +6,14 @@
       :indeterminate="chooseInfo.indeterminate"
       @change="changeCheckbox('all',chooseInfo)"
       v-if="checkOption.isAllShow"
+    >{{checkOption.allKey}}</el-checkbox>
+    <el-checkbox-group
+      :min="+checkOption.min"
+      :max="+checkOption.max||list.length"
+      :disabled="disabled"
+      v-model="checkValue"
+      :class="checkOption.groupClass"
     >
-{{checkOption.allKey}}
-</el-checkbox>
-    <el-checkbox-group :disabled="disabled" v-model="checkValue" :class="checkOption.groupClass">
       <el-checkbox
         :class="checkOption.checkboxClass"
         v-for="(item,index) in list"
@@ -61,6 +65,8 @@ export default {
     return {
       checkValue: [],
       checkOption: {
+        min: '', // 最小勾选个数
+        max: '', // 最大勾选个数
         borderClass: '', // 配置边框样式
         isBorder: false, // 是否配置默认边框
         groupClass: '', // 配置组样式
@@ -79,12 +85,22 @@ export default {
     }
   },
   watch: {
+    option: {
+      handler() {
+        this.checkOption = Object.assign(
+          {},
+          { ...this.checkOption },
+          this.option
+        )
+      },
+      deep: true
+    },
     value(val) {
-      if (!(val && val.length)) this.checkValue = []
-      // 只回填一次
-      if (val && val.length && !this.isBackfill) {
-        this.getVlaue(val)
-        this.isBackfill = true
+      // 回填时，因为外部传入的是字符串或者数组，而内部为数组，所以数据类型不同时会造成死循环
+      // 使用该方法或不在回填的同时往外回传值可以防止死循环
+      const modelVal = Array.isArray(val) ? val : val.split(',')
+      if (JSON.stringify(modelVal) !== JSON.stringify(this.checkValue)) {
+        this.getValue(val)
       }
     },
     list: {
@@ -94,6 +110,7 @@ export default {
           this.chooseInfo.isAll = this.checkOption.isAll
           this.changeCheckbox('all', this.chooseInfo)
         }
+        this.changeList()
       },
       deep: true
     },
@@ -111,10 +128,24 @@ export default {
   mounted() {
     this.checkOption = Object.assign({}, { ...this.checkOption }, this.option)
     // 多次销毁再打开时，重复回填使用
-    this.getVlaue(this.value)
+    this.getValue(this.value)
   },
   methods: {
-    getVlaue(value) {
+    // list被动态删减时，重新对比已选值，如果已选值中有不在list中的就删除，并回传新的value值和设置新的全选状态
+    changeList() {
+      console.log('changeList', this.checkValue, this.list)
+      this.checkValue &&
+        this.checkValue.length &&
+        this.checkValue.forEach((e, index) => {
+          const listIds =
+            this.list && this.list.length
+              ? this.list.map(e => e[this.labelKey])
+              : []
+          if (!listIds.includes(e)) this.checkValue.splice(index, 1)
+        })
+      this.changeCheckbox('one', this.chooseInfo)
+    },
+    getValue(value) {
       // 默认传入值为字符串，如果需要数组传入的情况也做接收判断
       this.checkValue =
         value && value.length
@@ -122,13 +153,11 @@ export default {
             ? value.split(',').filter(e => e)
             : value
           : []
-      // 回填时获取全选状态
-      if (this.checkValue && this.checkValue.length) {
-        this.changeCheckbox('one', this.chooseInfo)
-      }
+      // 回填时获取全选状态，可不回传数据
+      this.changeCheckbox('one', this.chooseInfo, true)
     },
     // 选择终端
-    changeCheckbox(type, item) {
+    changeCheckbox(type, item, noInput) {
       const ids = this.list.map(e => {
         return e[this.labelKey]
       })
@@ -139,23 +168,27 @@ export default {
           item.indeterminate = false
           break
         case 'one':
-          item.isAll = deviceLen === ids.length
+          item.isAll = deviceLen !== 0 && deviceLen === ids.length
           item.indeterminate = deviceLen > 0 && deviceLen < ids.length
           break
       }
-      const choosed = this.list.filter(e => {
-        return this.checkValue.includes(e[this.labelKey])
+      const choosed = []
+      this.checkValue.forEach(e => {
+        const checkValue = this.list.filter(f => +f[this.labelKey] === +e)
+        if (checkValue && checkValue.length) choosed.push(checkValue[0])
       })
-      this.$emit(
-        'input',
-        this.checkValue.length
-          ? this.checkOption.isString
-            ? this.checkValue.join(',')
-            : this.checkValue
-          : this.checkOption.isString
-          ? ''
-          : []
-      )
+      if (!noInput) {
+        this.$emit(
+          'input',
+          this.checkValue.length
+            ? this.checkOption.isString
+              ? this.checkValue.join(',')
+              : this.checkValue
+            : this.checkOption.isString
+            ? ''
+            : []
+        )
+      }
       // 返回全选状态
       this.$emit('change-choose', { choosed, chooseInfo: this.chooseInfo })
     }

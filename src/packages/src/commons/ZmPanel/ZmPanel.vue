@@ -1,21 +1,5 @@
 <template>
-  <el-dialog
-    :visible.sync="computedVisible"
-    :title="title"
-    :top="top"
-    :fullscreen="fullscreen"
-    :modal="modal"
-    :modal-append-to-body="modalAppendToBody"
-    :append-to-body="appendToBody"
-    :lock-scroll="lockScroll"
-    :close-on-click-modal="closeOnClickModal"
-    :close-on-press-escape="closeOnPressEscape"
-    :show-close="showClose"
-    :before-close="onBeforeClose"
-    :center="center"
-    class="zm-panel"
-    :class="{'has-footer':$slots.footer}"
-  >
+  <el-dialog :visible.sync="computedVisible" :title="title" :top="top" :fullscreen="fullscreen" :modal="modal" :modal-append-to-body="modalAppendToBody" :append-to-body="appendToBody" :lock-scroll="lockScroll" :close-on-click-modal="closeOnClickModal" :close-on-press-escape="closeOnPressEscape" :show-close="showClose" :before-close="onBeforeClose" :center="center" class="zm-panel" :class="{'has-footer':$slots.footer, 'zm-panel-margin': needMargin}">
     <template v-if="showHeader">
       <div slot="title" class="el-dialog__title">
         <slot v-if="$slots.title||title" name="title">{{title}}</slot>
@@ -39,7 +23,6 @@
 <script>
 import { Dialog, Button } from 'element-ui';
 export default {
-  name: 'ZmPanel',
   components: {
     ElDialog: Dialog,
     ElButton: Button
@@ -60,7 +43,7 @@ export default {
     size: {
       type: String,
       default: 'small',
-      validator(value) {
+      validator (value) {
         return ['mini', 'small', 'large', 'auto'].includes(value);
       }
     },
@@ -79,7 +62,7 @@ export default {
     },
     modal: {
       type: Boolean,
-      default: true
+      default: false
     },
     modalAppendToBody: {
       type: Boolean,
@@ -132,9 +115,13 @@ export default {
     cancelText: {
       type: String,
       default: '取 消'
+    },
+    needMargin: { // 是否需要外层间距
+      type: Boolean,
+      default: false
     }
   },
-  data() {
+  data () {
     return {
       showSlot: true,
       slot: {
@@ -144,21 +131,21 @@ export default {
   },
   computed: {
     computedVisible: {
-      get() {
+      get () {
         return this.visible;
       },
-      set(value) {
+      set (value) {
         this.$emit('change', value);
       }
     },
-    renderEveryTime() {
+    renderEveryTime () {
       if (this.keepAlive) {
         return true
       } else {
         return this.visible
       }
     },
-    width() {
+    width () {
       const _size = this.size;
       let _width = '700';
       if (_size === 'mini') {
@@ -174,28 +161,28 @@ export default {
     }
   },
   watch: {
-    visible(value) {
+    visible (value) {
       if (this.keepAlive === false) {
         this.showSlot = value;
       }
     }
   },
-  mounted() {
+  mounted () {
     window.authDialog = this
   },
   methods: {
-    onBeforeClose(done) {
+    onBeforeClose (done) {
       if (typeof this.beforeClose === 'function') {
         this.beforeClose(done);
       } else {
         this.$emit('change', false);
       }
     },
-    cancel() {
+    cancel () {
       this.computedVisible = false;
       this.$emit('cancel');
     },
-    ok() {
+    ok () {
       this.$emit('confirm', () => {
         this.computedVisible = false;
       });
@@ -205,35 +192,41 @@ export default {
 </script>
 <style lang="scss">
 .zm-panel {
-  &.el-dialog__wrapper{
+  &.el-dialog__wrapper {
     position: absolute;
   }
-  background:rgba(238, 238, 238,.8);
+  background: rgba(238, 238, 238, 0.8);
   .el-dialog {
     display: flex;
     flex-direction: column;
-    border-radius:5px;
+    border-radius: 5px;
     &__body {
-      flex:1;
+      flex: 1;
       padding: 10px 20px;
-      overflow-y:auto;
-      overflow-x:hidden;
-      max-height:inherit !important
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: inherit !important;
     }
-    &__header{
-      border-bottom:1px solid #eee;
+    &__header {
+      border-bottom: 1px solid #eee;
     }
-    &__footer{
-      border-top:1px solid #eee;
+    &__footer {
+      border-top: 1px solid #eee;
     }
     position: absolute;
     margin: 0 !important;
     width: auto;
     position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
+}
+.zm-panel-margin {
+  top: 20px !important;
+  left: 20px !important;
+  right: 20px !important;
+  bottom: 20px !important;
 }
 </style>

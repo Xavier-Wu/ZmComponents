@@ -2,17 +2,17 @@
   <div class="df-wrap">
     <div
       class="fs14 dlh"
-      :class="!item.hide?item.width||'w400':''"
+      :class="!item.hide?item.width||(inline?'mw400':'wp100'):''"
       v-for="(item,index) in detailList"
       :key="index"
     >
       <template v-if="!item.hide">
-        <span :class="item.labelClass">{{item.name}}：</span>
+        <span :class="item.labelClass" v-if="item.name">{{item.name}}：</span>
         <slot :name="item.slot" v-if="item.slot"></slot>
         <span
           :class="item.valueClass"
           v-else
-        >{{info[item.key]||(typeof item.render==='function'? item.render():item.render)}}{{item.unit}}</span>
+        >{{info[item.key]||(typeof item.render==='function'? item.render():item.render)||'--'}}{{item.unit}}</span>
       </template>
     </div>
   </div>
@@ -30,16 +30,19 @@
  *  render:自定义
  *  key：默认
  *  unit：unit 单位
- *  width: 设置宽度
+ *  width: 设置宽度 wp100时整行,不设置时，文字超出时也可以执行定格或换行
  *  labelClass：标题样式
  *  valueClass：值样式
  */
 
 export default {
-  name: 'ZmDetail',
   props: {
+    inline: {
+      type: Boolean,
+      default: true
+    },
     list: {
-      type: Function,
+      type: [Function, Array],
       default: () => {}
     },
     info: {
@@ -48,9 +51,12 @@ export default {
         return {}
       }
     },
-    obj: Object, // 列表中传入详情中的值
-    default: () => {
-      return {}
+    obj: {
+      // 列表中传入详情中的值
+      type: Object,
+      default: () => {
+        return {}
+      }
     }
   },
   computed: {
@@ -63,7 +69,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.dlh{
-  line-height: 34px
+.dlh {
+  line-height: 34px;
 }
 </style>
