@@ -119,7 +119,7 @@ export default {
     },
     needMargin: { // 是否需要外层间距
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data () {
@@ -196,7 +196,7 @@ export default {
   &.el-dialog__wrapper {
     position: absolute;
   }
-  background: rgba(238, 238, 238, 0.8);
+  background: #e9eef3;
   .el-dialog {
     display: flex;
     flex-direction: column;
@@ -217,7 +217,6 @@ export default {
     position: absolute;
     margin: 0 !important;
     width: auto;
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -225,9 +224,11 @@ export default {
   }
 }
 .zm-panel-margin {
-  top: 20px !important;
-  left: 20px !important;
-  right: 20px !important;
-  bottom: 20px !important;
+  .el-dialog {
+    top: 20px !important;
+    left: 20px !important;
+    right: 20px !important;
+    bottom: 20px !important;
+  }
 }
 </style>
