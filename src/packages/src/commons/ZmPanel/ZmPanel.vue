@@ -59,11 +59,11 @@ export default {
     },
     fullscreen: {
       type: Boolean,
-      default: false
+      default: true
     },
     modal: {
       type: Boolean,
-      default: false
+      default: true
     },
     modalAppendToBody: {
       type: Boolean,

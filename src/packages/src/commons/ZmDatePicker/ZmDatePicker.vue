@@ -1,35 +1,12 @@
 <template>
   <div class="content-item">
     <div class="button-item vm" :class="{mr20:showRadio}">
-      <el-date-picker
-        :class="dateClass||'w400'"
-        v-model="queryParams.joinTime"
-        align="right"
-        :type="type"
-        :disabled="disabled"
-        :range-separator="rangeSeparator"
-        :value-format="type | valueFormat"
-        :format="type | valueFormat"
-        :default-time="['00:00:00', '23:59:59']"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        unlink-panels
-        @change="changeDateRange"
-      ></el-date-picker>
+      <el-date-picker :class="dateClass||'w400'" v-model="queryParams.joinTime" align="right" :type="type" :disabled="disabled" :range-separator="rangeSeparator" :value-format="type | valueFormat" :format="type | valueFormat" :default-time="['00:00:00', '23:59:59']" start-placeholder="开始日期" end-placeholder="结束日期" unlink-panels @change="changeDateRange"></el-date-picker>
     </div>
-    <el-radio-group
-      v-model="queryParams.dateType"
-      @change="changeTimeType"
-      class="vm"
-      v-if="showRadio"
-    >
-      <el-radio-button
-        v-for="(item,index) in realDateTypeList"
-        :key="index"
-        :label="item.label"
-      >
-{{item.name}}
-</el-radio-button>
+    <el-radio-group v-model="queryParams.dateType" @change="changeTimeType" class="vm" v-if="showRadio">
+      <el-radio-button v-for="(item,index) in realDateTypeList" :key="index" :label="item.label">
+        {{item.name}}
+      </el-radio-button>
     </el-radio-group>
   </div>
 </template>
@@ -39,7 +16,7 @@ import { getData } from '../../utils/date'
 export default {
   name: 'ZmDatePicker',
   filters: {
-    valueFormat(v) {
+    valueFormat (v) {
       if (['datetimerange'].includes(v)) {
         return 'yyyy-MM-dd HH:mm:ss'
       }
@@ -63,7 +40,7 @@ export default {
     },
     defaultChooseType: {
       type: Array,
-      default() {
+      default () {
         return ['today', 'yesterday', 'prve7Days', 'prve30Days']
       }
     },
@@ -84,7 +61,7 @@ export default {
       default: ''
     }
   },
-  data() {
+  data () {
     return {
       queryParams: {
         dateType: 'today',
@@ -139,7 +116,7 @@ export default {
     }
   },
   computed: {
-    realDateTypeList() {
+    realDateTypeList () {
       const realDateTypeList = []
       this.dateTypeList.forEach(e => {
         if (this.getShowType(e.label)) realDateTypeList.push(e)
@@ -149,7 +126,7 @@ export default {
   },
   watch: {
     'queryParams.joinTime': {
-      handler(value) {
+      handler (value) {
         const isArr = value instanceof Array
         this.$emit('update:startDate', isArr ? value[0] : '')
         this.$emit('update:endDate', isArr ? value[1] : '')
@@ -158,17 +135,18 @@ export default {
       immediate: true
     }
   },
-  mounted() {
+  mounted () {
     this.queryParams.dateType = this.showRadio ? this.defaultChooseType[0] : ''
     this.changeTimeType(this.queryParams.dateType)
     this.initTime()
   },
   methods: {
-    cleanTime() {
+    cleanTime () {
       this.queryParams.joinTime = []
+      this.queryParams.dateType = this.defaultDateType
       this.$emit('on-change', this.queryParams)
     },
-    initTime() {
+    initTime () {
       const type = this.type
       if (['datetimerange', 'daterange'].includes(type)) {
         if (this.startDate) {
@@ -179,23 +157,23 @@ export default {
         this.queryParams.joinTime = this.startDate
       }
     },
-    changeDateRange(val) {
+    changeDateRange (val) {
       if (!val) {
         this.queryParams.dateType = val ? '' : 'all'
         this.queryParams.joinTime = val || []
       }
       this.$emit('on-change', this.queryParams)
     },
-    changeTimeType(val) {
+    changeTimeType (val) {
       this.chooseTimeType(val)
       this.$emit('on-change', this.queryParams)
     },
     // 获取需要展示的选项类型
-    getShowType(type) {
+    getShowType (type) {
       const index = this.defaultChooseType.findIndex(e => e === type)
       return index !== -1
     },
-    chooseTimeType(val) {
+    chooseTimeType (val) {
       const time = new Date()
       const Year = time.getFullYear()
       let startTime = ''
