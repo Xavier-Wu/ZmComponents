@@ -230,5 +230,8 @@ export default {
     right: 20px !important;
     bottom: 20px !important;
   }
+  .el-dialog.is-fullscreen {
+    height: calc(100% - 40px) !important;
+  }
 }
 </style>
