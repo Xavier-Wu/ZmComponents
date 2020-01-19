@@ -12,7 +12,7 @@
     >
       <div class="main">
         <slot name="header" />
-        <div class="page-main hi ml20 p0 df">
+        <div class="page-main hi p0 df">
           <div id="iframeBox"></div>
           <!-- <iframe ref="iframe" marginheight="0" marginwidth="0" :src="iframeSrc" width="100%" :height="height" @load="loadIframe" frameborder="0" scrolling="no"></iframe> -->
         </div>
@@ -77,8 +77,8 @@ export default {
           iframe.setAttribute('display', 'block')
           iframe.scrolling = 'no'
           iframe.addEventListener('load', _vm.loadIframe())
-          iframe.height = this.type === 'router' ? _vm.height : _vm.height - 146
-          iframe.width = this.type === 'router' ? _vm.width : _vm.width - 40
+          iframe.height = this.type === 'router' ? _vm.height : _vm.height - 193
+          iframe.width = this.type === 'router' ? _vm.width : _vm.width - 80
           const box = document.getElementById('iframeBox')
           box.appendChild(iframe)
           _vm.watchMessage()

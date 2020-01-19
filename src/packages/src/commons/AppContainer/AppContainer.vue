@@ -73,6 +73,8 @@ export default {
   .center,
   .left {
     background: #fff;
+    height: 100%;
+    overflow-y: auto;
   }
 }
 </style>
