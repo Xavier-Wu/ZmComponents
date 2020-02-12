@@ -1,7 +1,7 @@
 <template>
   <div class="content-item">
     <div class="button-item vm" :class="{mr20:showRadio}">
-      <el-date-picker :class="dateClass||'w400'" v-model="queryParams.joinTime" align="right" :type="type" :disabled="disabled" :range-separator="rangeSeparator" :value-format="type | valueFormat" :format="type | valueFormat" :default-time="['00:00:00', '23:59:59']" start-placeholder="开始日期" end-placeholder="结束日期" unlink-panels @change="changeDateRange"></el-date-picker>
+      <el-date-picker :class="dateClass||'w400'" v-model="queryParams.joinTime" align="right" :type="type" :disabled="disabled" :range-separator="rangeSeparator" :value-format="type | valueFormat" :format="type | valueFormat" v-bind="$attrs" v-on="$listeners" :default-time="['00:00:00', '23:59:59']" start-placeholder="开始日期" end-placeholder="结束日期" unlink-panels @change="changeDateRange"></el-date-picker>
     </div>
     <el-radio-group v-model="queryParams.dateType" @change="changeTimeType" class="vm" v-if="showRadio">
       <el-radio-button v-for="(item,index) in realDateTypeList" :key="index" :label="item.label">
