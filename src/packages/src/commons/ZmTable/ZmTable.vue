@@ -11,6 +11,7 @@
       :default-expand-all="tableOpt.defaultExpandAll"
       :expand-row-keys="expandRowKeys"
       :row-key="pk"
+      v-bind="$attr"
       ref="zmTable"
       @row-click="handleRowClick"
       @select="handleSelectionChange"

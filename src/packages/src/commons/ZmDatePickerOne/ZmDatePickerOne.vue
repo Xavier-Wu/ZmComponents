@@ -8,7 +8,7 @@
     :readonly="readonly"
     :placeholder="placeholder"
     :clearable="clearable"
-    v-bind="$attrs"
+    v-bind="$attrs" 
     v-on="$listeners"
     @change="change"
   ></el-date-picker>

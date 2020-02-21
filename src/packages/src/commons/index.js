@@ -27,6 +27,7 @@ import ZmTimesPicker from './ZmTimesPicker/index.js'
 import ZmUpdateLoading from './ZmUpdateLoading/index.js'
 import ZmIframeDialog from './ZmIframeDialog/index.js'
 import AppContainer from './AppContainer/index.js'
+import ZmButton from './ZmButton/index.js'
 
 const components = [
   AppBlock,
@@ -57,7 +58,8 @@ const components = [
   ZmTable,
   ZmTabs,
   ZmTimesPicker,
-  ZmUpdateLoading
+  ZmUpdateLoading,
+  ZmButton
 ]
 const install = function(vue) {
   /* istanbul ignore if */
@@ -102,5 +104,6 @@ export default {
   ZmTable,
   ZmTabs,
   ZmTimesPicker,
-  ZmUpdateLoading
+  ZmUpdateLoading,
+  ZmButton
 }

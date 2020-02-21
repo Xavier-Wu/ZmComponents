@@ -28,6 +28,7 @@ import ZmTimesPicker from './commons/ZmTimesPicker/index.js'
 import ZmUpdateLoading from './commons/ZmUpdateLoading/index.js'
 import ZmIframeDialog from './commons/ZmIframeDialog/index.js'
 import AppContainer from './commons/AppContainer/index.js'
+import ZmButton from './commons/ZmButton/index.js'
 
 // components
 // import DateSelector from './components/DateSelector/index.js'
@@ -76,7 +77,8 @@ const components = [
   ZmTable,
   ZmTabs,
   ZmTimesPicker,
-  ZmUpdateLoading
+  ZmUpdateLoading,
+  ZmButton
   // DateSelector,
   // GlInput,
   // GtLtPrice,
@@ -137,7 +139,8 @@ export default {
   ZmTable,
   ZmTabs,
   ZmTimesPicker,
-  ZmUpdateLoading
+  ZmUpdateLoading,
+  ZmButton
   // DateSelector,
   // GlInput,
   // GtLtPrice,

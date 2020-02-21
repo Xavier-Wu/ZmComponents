@@ -77,8 +77,8 @@ export default {
           iframe.setAttribute('display', 'block')
           iframe.scrolling = 'no'
           iframe.addEventListener('load', _vm.loadIframe())
-          iframe.height = this.type === 'router' ? _vm.height : _vm.height - 193
-          iframe.width = this.type === 'router' ? _vm.width : _vm.width - 80
+          iframe.height = _vm.type === 'router' ? _vm.height : _vm.height - 193
+          iframe.width = _vm.type === 'router' ? _vm.width : _vm.width - 80
           const box = document.getElementById('iframeBox')
           box.appendChild(iframe)
           _vm.watchMessage()
@@ -117,8 +117,8 @@ export default {
         document.body.clientHeight
       )
       const iframe = document.getElementById('ownIframe')
-      iframe.height = _vm.height
-      iframe.width = _vm.width
+      iframe.height = _vm.type === 'router' ? _vm.height : _vm.height - 193
+      iframe.width = _vm.type === 'router' ? _vm.width : _vm.width - 80
     },
     // 添加postmessage事件监听
     watchMessage() {

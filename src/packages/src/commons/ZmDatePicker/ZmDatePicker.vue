@@ -59,7 +59,12 @@ export default {
     endDate: {
       type: [Date, String],
       default: ''
+    },
+    defaultDateType: {
+      type: String,
+      default: 'today'
     }
+
   },
   data () {
     return {
