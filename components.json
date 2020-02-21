@@ -27,5 +27,6 @@
   "zm-tabs": "./src/packages/src/commons/ZmTabs/index.js",
   "zm-times-picker": "./src/packages/src/commons/ZmTimesPicker/index.js",
   "zm-update-loading": "./src/packages/src/commons/ZmUpdateLoading/index.js",
-  "zm-iframe-dialog": "./src/packages/src/commons/ZmIframeDialog/index.js"
+  "zm-iframe-dialog": "./src/packages/src/commons/ZmIframeDialog/index.js",
+  "zm-button": "./src/packages/src/commons/ZmButton/index.js"
 }
