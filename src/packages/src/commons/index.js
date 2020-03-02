@@ -13,11 +13,11 @@ import ZmDatePicker from './ZmDatePicker/index.js'
 import ZmDatePickerOne from './ZmDatePickerOne/index.js'
 import ZmDesc from './ZmDesc/index.js'
 import ZmDetail from './ZmDetail/index.js'
-import ZmDialog from './ZmDialog/index.js'
+// import ZmDialog from './ZmDialog/index.js'
 import ZmExport from './ZmExport/index.js'
 import FormPoster from './FormPoster/index.js'
 import FormRadioSelect from './FormRadioSelect/index.js'
-import ZmPanel from './ZmPanel/index.js'
+// import ZmPanel from './ZmPanel/index.js'
 import ZmProgress from './ZmProgress/index.js'
 import ZmSelectCom from './ZmSelectCom/index.js'
 import ZmSteps from './ZmSteps/index.js'
@@ -46,12 +46,12 @@ const components = [
   ZmDatePickerOne,
   ZmDesc,
   ZmDetail,
-  ZmDialog,
+  // ZmDialog,
   ZmExport,
   FormPoster,
   FormRadioSelect,
   ZmIframeDialog,
-  ZmPanel,
+  // ZmPanel,
   ZmProgress,
   ZmSelectCom,
   ZmSteps,
@@ -92,12 +92,12 @@ export default {
   ZmDatePickerOne,
   ZmDesc,
   ZmDetail,
-  ZmDialog,
+  // ZmDialog,
   ZmExport,
   FormPoster,
   FormRadioSelect,
   ZmIframeDialog,
-  ZmPanel,
+  // ZmPanel,
   ZmProgress,
   ZmSelectCom,
   ZmSteps,
