@@ -6,7 +6,10 @@
       :indeterminate="chooseInfo.indeterminate"
       @change="changeCheckbox('all',chooseInfo)"
       v-if="checkOption.isAllShow"
-    >{{checkOption.allKey}}</el-checkbox>
+    >
+      <slot name="allShow" v-if="$slots.allShow"></slot>
+      <span v-else>{{checkOption.allKey}}</span>
+    </el-checkbox>
     <el-checkbox-group
       :min="+checkOption.min"
       :max="+checkOption.max||list.length"
@@ -128,7 +131,7 @@ export default {
   mounted() {
     this.checkOption = Object.assign({}, { ...this.checkOption }, this.option)
     // 多次销毁再打开时，重复回填使用
-    if(this.value && this.value.length) this.getValue(this.value)
+    if (this.value && this.value.length) this.getValue(this.value)
   },
   methods: {
     // list被动态删减时，重新对比已选值，如果已选值中有不在list中的就删除，并回传新的value值和设置新的全选状态

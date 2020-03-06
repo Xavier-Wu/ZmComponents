@@ -3,7 +3,7 @@
   <slot></slot>
   <el-tooltip v-bind="$attrs" :placement="placement">
     <div slot="content" v-html="content"></div>
-    <i class="el-icon-question" :style="iconStyle"></i>
+    <i class="el-icon-question" :style="iconStyle" :class="iconClass"></i>
   </el-tooltip>
 </div>
 </template>
@@ -23,6 +23,10 @@
       iconStyle: {
         type: String,
         default: ''
+      },
+      iconClass: {
+        type: String,
+        default: ''
       }
     }
   }
@@ -37,8 +41,8 @@
 }
 .el-icon-question{
   position: absolute;
-  font-size: 22px;
-  color:#3ca0ec;
+  font-size: 18px;
+  color:#d2d2d2;
   top:7px;
   right: -34px;
   cursor: pointer;
