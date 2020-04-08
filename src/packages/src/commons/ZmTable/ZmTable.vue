@@ -12,6 +12,7 @@
       :expand-row-keys="expandRowKeys"
       :row-key="pk"
       v-bind="$attrs"
+      v-on="$listeners"
       ref="zmTable"
       @row-click="handleRowClick"
       @select="handleSelectionChange"
