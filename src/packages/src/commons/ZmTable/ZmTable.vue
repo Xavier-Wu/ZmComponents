@@ -411,9 +411,11 @@ export default {
     },
     // 表格全选事件
     handleAllSelectionChange(selection) {
-      // 如果有则是全选否则就是全取消
+      const chosenIds = selection.map(i => i[this.pk])
       const dataList = this.tableParams.data
-      if (selection.length > 1) {
+      const flag = chosenIds.includes(dataList[0][this.pk])
+      // 如果有则是全选否则就是全取消
+      if (flag) {
         this.addRows(dataList)
       } else {
         this.removeRows(dataList)
