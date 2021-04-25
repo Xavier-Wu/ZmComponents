@@ -325,6 +325,11 @@ export default {
         this.getSelectionsList(),
         this.getSelectionsCacheLength()
       )
+      this.$emit(
+        'table-select',
+        this.getSelectionsList(),
+        this.getSelectionsCacheLength()
+      )
     },
     // 默认选中转为容易处理的格式
     initDefaultSelections() {
@@ -390,6 +395,7 @@ export default {
     },
     expandChange(row, expandedRows) {
       this.$emit('expand-change', row, expandedRows)
+      this.$emit('table-expand-change', row, expandedRows)
     },
     handleSelectionChange(selection, row) {
       // 因为翻页点选后selection会出现为undefined的元素
@@ -408,6 +414,11 @@ export default {
         this.getSelectionsList(),
         this.getSelectionsCacheLength()
       )
+      this.$emit(
+        'table-select',
+        this.getSelectionsList(),
+        this.getSelectionsCacheLength()
+      )
     },
     // 表格全选事件
     handleAllSelectionChange(selection) {
@@ -423,6 +434,11 @@ export default {
       this.elSelectionsCache = selection
       this.$emit(
         'select-all',
+        this.getSelectionsList(),
+        this.getSelectionsCacheLength()
+      )
+      this.$emit(
+        'table-select-all',
         this.getSelectionsList(),
         this.getSelectionsCacheLength()
       )
@@ -479,10 +495,12 @@ export default {
     },
     handleRowClick(row, event, column) {
       this.$emit('row-click', row, event, column)
+      this.$emit('table-row-click', row, event, column)
     },
     selectionChange(e) {
       // console.log(e)
       this.$emit('selection-change', e)
+      this.$emit('table-selection-change', e)
     },
     toggleRowExpansion(row, expanded) {
       this.$refs.zmTable.toggleRowExpansion(row, expanded)
